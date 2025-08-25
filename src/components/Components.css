@@ -1,0 +1,198 @@
+:root {
+  --blanco: #fff;
+  --rojo: #ba181b;
+  --azul: #00b4d8;
+  --azul-hover: #48cae4;
+  --rojo-hover: #e5383b;
+  --verde: #09a129;
+  --naranja-oscuro: #e28b3e;
+  --naranja-claro: #f1b37c;
+  --naranja-clarito: #f8f1eb;
+}
+
+/*? CSS Nav */
+.nav {
+  width: 1250px;
+  padding: 1rem;
+  /* margin-bottom: 1rem; */
+  border-radius: 20px;
+  background: var(--naranja-claro);
+  position: fixed;
+  /* z-index: 9999; */
+}
+
+.tab {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* ? CSS de Formulario ========================= */
+.form {
+  /* border: solid 1px; */
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  box-shadow: 0 0 25px rgba(139, 0, 0, 0.144);
+  border-radius: 10px;
+  padding: 15px;
+  gap: 1em;
+}
+
+.form > input {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  flex: 1;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--naranja-claro);
+  background-color: var(--blanco);
+}
+
+.form > button {
+  border: none;
+  background-color: var(--naranja-oscuro);
+  color: var(--blanco);
+  padding: 5px 28px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 17px;
+
+  &:hover {
+    background-color: var(--naranja-claro);
+  }
+}
+
+/* ? CSS de AddTodo ========================= */
+.formTodo {
+  /* width: 100%; */
+  display: flex;
+  margin-bottom: 20px;
+  gap: 1em;
+}
+
+.input-add {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  flex: 1;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--naranja-claro);
+  background-color: var(--blanco);
+}
+
+.btn-add {
+  border: none;
+  background-color: var(--naranja-oscuro);
+  color: var(--blanco);
+  padding: 5px 28px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 17px;
+
+  &:hover {
+    background-color: var(--naranja-claro);
+  }
+}
+
+/* ? CSS de ItemTodo ========================= */
+.Container {
+  height: 80px;
+  /* background: var(--blanco); */
+  border-radius: 16px;
+  box-shadow: 0 3px 3px #ccc;
+  display: flex;
+  margin: 8px;
+  box-sizing: border-box;
+}
+
+.CheckField {
+  width: 80px;
+  height: 80px;
+  border-right: 2px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CheckboxDone {
+  background: var(--blanco);
+  height: 24px;
+  width: 24px;
+  border-radius: 20px;
+  border: 2px solid var(--naranja-claro);
+  cursor: pointer;
+}
+
+.CheckboxDone.checked {
+  background: var(--naranja-oscuro);
+}
+
+.checked {
+  background: var(--naranja-clarito);
+}
+
+.Todos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Description {
+  height: 80px;
+  /*width: 50vw; */
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 22px;
+  color: #555;
+  margin: 8px 16px;
+  font-weight: 500;
+}
+
+.IconTodo {
+  width: 24px;
+  margin: 24px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/* ? CSS de Tabla de usuarios ========================= */
+.tblUsers {
+  width: 100%;
+  margin-top: 25px;
+}
+
+/* .tblUsers > tbody > tr > td {
+  padding: 5px;
+} */
+
+.IconUser {
+  display: flex;
+  /* width: 24px; */
+  gap: 1rem;
+  /* padding-left: 5px; */
+
+  &:hover {
+    cursor: pointer;
+  }
+}
