@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import { TableUser } from './components/User/TableUser.jsx'
 import { AddTodo } from './components/Todo/AddTodo.jsx'
 import { CreateUser } from './components/User/CreateUser.jsx'
-import { UpdateUser } from './components/User/updateUser.jsx'
+import { UpdateUser } from './components/User/UpdateUser.jsx'
 import { UserProvider } from "./context/userContext.jsx";
 import App from './App.jsx'
 import './index.css'
