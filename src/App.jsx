@@ -1,9 +1,8 @@
-import { Menu } from './components/Menu'
 import { Outlet } from "react-router";
-import './App.css'
 import { CustomNavBar } from './components/customNavBar';
+import './App.css'
 
-function App() {
+export default function App() {
   return (
     <>
       <header>
@@ -16,5 +15,3 @@ function App() {
     </>
   )
 }
-
-export default App

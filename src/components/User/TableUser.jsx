@@ -1,9 +1,7 @@
-import { EditImage } from "../EditImage";
-import { TrashImage } from "../TrashImage";
-import { useTableUser } from "../../hooks/useTableUser";
-import { NavLink } from "react-router";
-import "../Components.css";
+// import { useTableUser } from "../../hooks/useTableUser";
 import { CustomTable } from "../CustomTable";
+import "../Components.css";
+import { useUser } from "../../context/userContext";
 
 const headers = [
     'Nombre',
@@ -20,14 +18,35 @@ const headers = [
 ];
 
 export const TableUser = () => {
-    const { Users, handleUpdateUser, handleDeleteUser } = useTableUser()
+    const { Users, handleAddUser, handleUpdateUser, handleDeleteUser } = useUser()
+
+    return (
+        <div className="contentTableUsers">
+            <button onClick={handleAddUser} className="flex font-semibold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-orange-500 hover:text-white focus:ring-4 focus:ring-orange-100 rounded-lg px-5 py-2.5 me-2 mb-2">Agregar Usuario</button>
+
+            <CustomTable headers={headers} data={Users} handleUpdateUser={handleUpdateUser} handleDeleteUser={handleDeleteUser} />
+        </div>
+    )
+}
+
+/* FUNCION ANTIGUA CON HOOKS
+export default () => <UserProvider>
+    <TableUser></TableUser>
+</UserProvider>
+
+function TableUser() {
+    // const {Users, handleUpdateUser, handleDeleteUser} = useTableUser()
+    const { Users, handleUpdateUser, handleDeleteUser } = useUser()
 
     return (
         <>
             <div className="contentTableUsers">
-                <NavLink className={"btn-add"} to={"/users/create"}>Agregar Usuario</NavLink>
+                <NavLink className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-200 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " to={"/users/create"}>Agregar Usuario</NavLink>
 
-                {/* <CustomTable headers={headers} data={Users} handleUpdateUser={handleUpdateUser} handleDeleteUser={handleDeleteUser} /> */}
+                 <CustomButton Text="Agregar usuario">
+                </CustomButton> 
+
+                <CustomTable headers={headers} data={Users} handleUpdateUser={handleUpdateUser} handleDeleteUser={handleDeleteUser} />
 
                 <table className="w-full mt-5 text-left rtl:text-right text-black  dark:text-gray-400">
                     <thead className="text-xs text-gray-900 uppercase bg-orange-300  dark:text-gray-900">
@@ -72,9 +91,9 @@ export const TableUser = () => {
                             // </tr>
                         )}
                     </tbody>
-                </table>
-            </div>
+                </table> 
+            </div >
         </>
-
     )
-};
+}
+*/

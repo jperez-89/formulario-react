@@ -1,7 +1,9 @@
-import { useCreateUser } from "../../hooks/useCreateUser";
+// import { useCreateUser } from "../../hooks/useCreateUser";
+import { useUser } from "../../context/userContext";
 
 export const CreateUser = () => {
-    const { FormUser, actionForm, handleChange, handleSubmit } = useCreateUser()
+    // const { FormUser, actionForm, handleChange, handleSubmit } = useCreateUser()
+    const { FormUser, handleChange, handleSubmit } = useUser()
 
     return (
         <form className='form' onSubmit={handleSubmit}>
@@ -29,25 +31,24 @@ export const CreateUser = () => {
                 onChange={handleChange}
             // required
             />
-            {actionForm &&
-                <>   <label>Usuario:</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={FormUser.username}
-                        onChange={handleChange}
-                    // required
-                    />
-                    <label>Contraseña:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={FormUser.password}
-                        onChange={handleChange}
-                    // required
-                    />
-                </>}
-            <button type="submit">{actionForm ? "GUARDAR" : "ACTUALIZAR"}</button>
+            <label>Usuario:</label>
+            <input
+                type="text"
+                name="username"
+                value={FormUser.username}
+                onChange={handleChange}
+            // required
+            />
+            <label>Contraseña:</label>
+            <input
+                type="password"
+                name="password"
+                value={FormUser.password}
+                onChange={handleChange}
+            // required
+            />
+            <button type="submit">GUARDAR</button>
+            {/* <button type="submit">{actionForm ? "GUARDAR" : "ACTUALIZAR"}</button> */}
         </form>
 
     );

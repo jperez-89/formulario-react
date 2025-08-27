@@ -1,8 +1,9 @@
-import React from 'react'
-import { useUpdateUser } from '../../hooks/useUpdateUser';
+// import { useUpdateUser } from '../../hooks/useUpdateUser';
+import { useUser } from "../../context/userContext";
 
 export const UpdateUser = () => {
-    const { FormUpdateUser, actionForm, handleChange, handleSubmit } = useUpdateUser()
+    // const { FormUpdateUser, actionForm, handleChange, handleSubmit } = useUpdateUser()
+    const { FormUser, actionForm, handleChange, handleSubmit } = useUser()
 
     return (
         <form className='form' onSubmit={handleSubmit}>
@@ -10,7 +11,7 @@ export const UpdateUser = () => {
             <input
                 type="text"
                 name="name"
-                value={FormUpdateUser.name}
+                value={FormUser.name}
                 onChange={handleChange}
             // required
             />
@@ -18,7 +19,7 @@ export const UpdateUser = () => {
             <input
                 type="email"
                 name="email"
-                value={FormUpdateUser.email}
+                value={FormUser.email}
                 onChange={handleChange}
             // required
             />
@@ -26,7 +27,7 @@ export const UpdateUser = () => {
             <input
                 type="date"
                 name="dob"
-                value={FormUpdateUser.dob}
+                value={FormUser.dob}
                 onChange={handleChange}
             // required
             />
@@ -35,7 +36,7 @@ export const UpdateUser = () => {
                     <input
                         type="text"
                         name="username"
-                        value={FormUpdateUser.username}
+                        value={FormUser.username}
                         onChange={handleChange}
                     // required
                     />
@@ -43,7 +44,7 @@ export const UpdateUser = () => {
                     <input
                         type="password"
                         name="password"
-                        value={FormUpdateUser.password}
+                        value={FormUser.password}
                         onChange={handleChange}
                     // required
                     />
