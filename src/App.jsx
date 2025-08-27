@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { CustomNavBar } from './components/customNavBar';
+import { CustomNavBar } from './components/CustomNavBar';
 import './App.css'
 
 export default function App() {
