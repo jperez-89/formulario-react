@@ -18,6 +18,7 @@ const headers = [
 ];
 
 export const TableUser = () => {
+    // Se extraen las funciones del UserContext
     const { Users, handleAddUser, handleUpdateUser, handleDeleteUser } = useUser()
 
     return (

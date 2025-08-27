@@ -3,6 +3,7 @@ import { useUser } from "../../context/userContext";
 
 export const UpdateUser = () => {
     // const { FormUpdateUser, actionForm, handleChange, handleSubmit } = useUpdateUser()
+    // Se extraen las funciones del UserContext
     const { FormUser, actionForm, handleChange, handleSubmit } = useUser()
 
     return (

@@ -9,6 +9,7 @@ export default function App() {
         <CustomNavBar />
       </header>
 
+      {/* Aqui se renderizan todas las ventanas */}
       <main>
         <Outlet />
       </main>

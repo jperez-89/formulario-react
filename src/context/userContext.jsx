@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 
 const UserContext = createContext()
 
+// Contiene todas las funciones necesarias del usuario
+// Esto reemplaza a los hooks Create, Table y Update
 export function UserProvider(props) {
     const initialCreateUsers = {
         name: "",
@@ -19,7 +21,7 @@ export function UserProvider(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("carga datos usuarios");
+        console.log("carga datos de usuarios");
 
         const response = getUsers();
         response.then((data) => {
@@ -27,10 +29,9 @@ export function UserProvider(props) {
 
             setUsers(data.response);
         });
-        setActionForm(true);
-
     }, []);
 
+    // Obtiene la informacion del formulario y actualiza el estado con la misma
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -114,7 +115,7 @@ export function UserProvider(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Users, FormUser, actionForm])
 
-    // Se retorna el context con todas las funciones u propiedades
+    // Se retorna el context con todas las funciones y propiedades
     return <UserContext.Provider value={value} {...props} />
 }
 

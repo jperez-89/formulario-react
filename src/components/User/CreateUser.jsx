@@ -3,6 +3,7 @@ import { useUser } from "../../context/userContext";
 
 export const CreateUser = () => {
     // const { FormUser, actionForm, handleChange, handleSubmit } = useCreateUser()
+    // Se extraen las funciones del UserContext
     const { FormUser, handleChange, handleSubmit } = useUser()
 
     return (
@@ -21,6 +22,7 @@ export const CreateUser = () => {
                 name="email"
                 value={FormUser.email}
                 onChange={handleChange}
+                placeholder="correo@correo.com"
             // required
             />
             <label>Fecha de nacimiento:</label>
