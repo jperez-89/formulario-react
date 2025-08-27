@@ -1,13 +1,23 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { todoReducer } from "../todoReducer";
 
 export const useTodo = () => {
-  // const initialState = {
-  //   todoList: [],
-  //   navBar: "todos",
-  // };
-
   const initialState = [];
+  const initialFormTodo = [];
+
+  const [formTodo, setFormState] = useState(initialFormTodo);
+
+  const onInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setFormState({
+      ...formTodo,
+      [name]: value,
+    });
+  };
+
+  const onResetFormTodo = () => setFormState(initialFormTodo);
 
   // Obtenemos los todos del localStorage, si no hay todos, retorna un array vacio
   const init = () => {
@@ -28,17 +38,6 @@ export const useTodo = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const handleTab = (tab) => {
-    const action = {
-      type: "TAB",
-      payload: tab,
-    };
-
-    // console.log("useTodo - handleTab");
-    dispatchTodo(action);
-    // console.log(action);
-  };
-
   const handleNewTodo = (todo) => {
     const action = {
       type: "NEW",
@@ -47,13 +46,9 @@ export const useTodo = () => {
 
     console.log("useTodo - handleNewTodo");
     dispatchTodo(action);
-    // console.log("todoooos");
-    // console.log(todos);
   };
 
   const handleCompleteTodo = (todo) => {
-    console.log(todo);
-
     const action = {
       type: "DONE",
       payload: todo.id,
@@ -84,7 +79,10 @@ export const useTodo = () => {
   };
 
   return {
-    handleTab,
+    ...formTodo,
+    formTodo,
+    onInputChange,
+    onResetFormTodo,
     todos,
     todosCount,
     pendingTodos,

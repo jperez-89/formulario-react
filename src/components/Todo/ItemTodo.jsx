@@ -1,5 +1,5 @@
-import "./Components.css";
-import trash from "../assets/trash.svg"
+import { TrashImage } from "../TrashImage";
+import "../Components.css";
 
 export const ItemTodo = ({ todo, handleCompleteTodo, handleDeleteTodo }) => {
     return (
@@ -12,7 +12,7 @@ export const ItemTodo = ({ todo, handleCompleteTodo, handleDeleteTodo }) => {
                     <h2>{todo.description} </h2>
                 </div>
                 <div className="IconTodo">
-                    <a href="#" onClick={() => handleDeleteTodo(todo.id)} ><img src={trash} alt="edit" /></a>
+                    <button onClick={() => handleDeleteTodo(todo.id)} > <TrashImage /></button>
                 </div>
             </div>
         </div>

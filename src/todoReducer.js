@@ -1,19 +1,9 @@
-export const todoReducer = (state, action) => {
+export const todoReducer = (state = [], action) => {
   // export const todoReducer = ({ navBar, todoList }, action) => {
   switch (action.type) {
-    case "TAB":
-      console.log("todoReducer - TAB");
-      return [...state, action.payload];
-
     case "NEW":
       console.log("todoReducer - New");
-      // console.log("state");
-      // console.log(state);
 
-      // console.log("action");
-      // console.log(action);
-
-      // return [state.navBar, ...state.todoList, action.payload];
       return [...state, action.payload];
 
     case "DONE":

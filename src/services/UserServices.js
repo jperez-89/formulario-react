@@ -8,12 +8,16 @@ export const getUsers = async () => {
     });
 
     if (response.ok) {
-      return await response.json();
+      return { status: 200, response: await response.json() };
     } else {
       console.log("SIN DATOS");
+      return { status: 500, response: "SIN DATOS" };
     }
   } catch (error) {
-    console.log("ERROR AL EJECUTAR EL SERVICIO ==>" + error);
+    return {
+      status: 500,
+      response: "ERROR AL EJECUTAR EL SERVICIO ==> " + error,
+    };
   }
 };
 
@@ -26,12 +30,16 @@ export const addUser = async (form = {}) => {
     });
 
     if (response.ok) {
-      return await response.json();
+      return { status: 200, response: await response.json() };
     } else {
       console.log("NO SE GUARDARON LOS DATOS");
+      return { status: 500, response: "NO SE GUARDARON LOS DATOS" };
     }
   } catch (error) {
-    console.log("ERROR AL EJECUTAR EL SERVICIO ==>" + error);
+    return {
+      status: 500,
+      response: "ERROR AL EJECUTAR EL SERVICIO ==> " + error,
+    };
   }
 };
 
@@ -51,3 +59,43 @@ export const deleteUser = async (userId) => {
     console.log("ERROR AL EJECUTAR EL SERVICIO ==>" + error);
   }
 };
+
+export const updateUser = async (form = {}) => {
+  const idUser = form._id;
+  try {
+    const response = await fetch(ENDPOINT + idUser, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (response.ok) {
+      return { status: 200, response: await response.json() };
+    } else {
+      console.log("NO SE ACTUALIZARON LOS DATOS");
+      return { status: 500, response: "NO SE ACTUALIZARON LOS DATOS" };
+    }
+  } catch (error) {
+    return {
+      status: 500,
+      response: "ERROR AL EJECUTAR EL SERVICIO ==> " + error,
+    };
+  }
+};
+
+// const userFetch = async (method = "") => {
+//   try {
+//     const response = await fetch(ENDPOINT, {
+//       method: method,
+//       headers: { "Content-Type": "application/json" },
+//     });
+
+//     if (response.ok) {
+//       return await response.json();
+//     } else {
+//       console.log("SIN DATOS");
+//     }
+//   } catch (error) {
+//     console.log("ERROR AL EJECUTAR EL SERVICIO ==>" + error);
+//   }
+// };

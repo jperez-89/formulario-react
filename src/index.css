@@ -1,11 +1,12 @@
+@import "flowbite/src/themes/default";
+
 :root {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  /* line-height: 1.5; */
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: #181717de;
+  /* background-color: #cad1d6; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,12 +16,11 @@
 
 main {
   margin: 0;
-  /* display: flex; */
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #1e66a5;
+    background-color: #c95050;
   }
 }
