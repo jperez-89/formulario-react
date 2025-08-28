@@ -51,10 +51,7 @@ export const CustomNavBar = () => {
                     </div>
                 </div>
             </nav >
-
         </>
-
-
     )
 }
 
