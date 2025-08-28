@@ -1,4 +1,4 @@
-import trash from "../assets/trash.svg"
+import trash from "../../assets/trash.svg"
 
 export const TrashImage = () => {
     return (

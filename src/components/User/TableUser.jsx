@@ -1,5 +1,5 @@
 // import { useTableUser } from "../../hooks/useTableUser";
-import { CustomTable } from "../CustomTable";
+import { CustomTable } from "../Base/CustomTable";
 import "../Components.css";
 import { useUser } from "../../context/userContext";
 

@@ -18,10 +18,12 @@ export function UserProvider(props) {
     const [Users, setUsers] = useState([]);
     const [FormUser, setFormUser] = useState(initialCreateUsers);
     const [actionForm, setActionForm] = useState(true);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         console.log("carga datos de usuarios");
+        setLoading(true)
 
         const response = getUsers();
         response.then((data) => {
@@ -113,7 +115,7 @@ export function UserProvider(props) {
             Users, FormUser, actionForm, handleAddUser, handleChange, handleSubmit, handleUpdateUser, handleDeleteUser
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [Users, FormUser, actionForm])
+    }, [Users, FormUser, actionForm, loading])
 
     // Se retorna el context con todas las funciones y propiedades
     return <UserContext.Provider value={value} {...props} />

@@ -1,4 +1,4 @@
-import edit from "../assets/edit.svg"
+import edit from "../../assets/edit.svg"
 
 export const EditImage = () => {
     return (

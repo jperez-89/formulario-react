@@ -1,4 +1,4 @@
-import { TrashImage } from "../TrashImage";
+import { TrashImage } from "../Base/TrashImage";
 import "../Components.css";
 
 export const ItemTodo = ({ todo, handleCompleteTodo, handleDeleteTodo }) => {
