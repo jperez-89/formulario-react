@@ -1,7 +1,7 @@
 // import { useTableUser } from "../../hooks/useTableUser";
 import { CustomTable } from "../Base/CustomTable";
-import "../Components.css";
 import { useUser } from "../../context/userContext";
+import "../Components.css";
 
 const headers = [
     'Nombre',
@@ -19,13 +19,13 @@ const headers = [
 
 export const TableUser = () => {
     // Se extraen las funciones del UserContext
-    const { Users, handleAddUser, handleUpdateUser, handleDeleteUser } = useUser()
+    const { Users, errors, loading, handleAddUser, handleUpdateUser, handleDeleteUser } = useUser()
 
     return (
         <div className="contentTableUsers">
             <button onClick={handleAddUser} className="flex font-semibold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-orange-500 hover:text-white focus:ring-4 focus:ring-orange-100 rounded-lg px-5 py-2.5 me-2 mb-2">Agregar Usuario</button>
 
-            <CustomTable headers={headers} data={Users} handleUpdateUser={handleUpdateUser} handleDeleteUser={handleDeleteUser} />
+            <CustomTable headers={headers} data={Users} handleUpdateUser={handleUpdateUser} handleDeleteUser={handleDeleteUser} Errors={errors} Loading={loading} />
         </div>
     )
 }
