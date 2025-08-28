@@ -23,7 +23,7 @@ export const TableUser = () => {
 
     return (
         <div className="contentTableUsers">
-            <button onClick={handleAddUser} className="flex font-semibold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-orange-500 hover:text-white focus:ring-4 focus:ring-orange-100 rounded-lg px-5 py-2.5 me-2 mb-2">Agregar Usuario</button>
+            <button onClick={handleAddUser} className="flex font-semibold text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-orange-500 hover:text-white focus:ring-4 focus:ring-orange-100 rounded-lg px-5 py-2.5 me-2 mb-2">Agregar Usuario</button>
 
             <CustomTable headers={headers} data={Users} handleUpdateUser={handleUpdateUser} handleDeleteUser={handleDeleteUser} Errors={errors} Loading={loading} />
         </div>
