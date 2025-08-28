@@ -1,6 +1,4 @@
-@import "tailwindcss";
-
-#root {
+main {
   max-width: 100dvh;
   margin: 0 auto;
   padding-top: 0.5rem;
