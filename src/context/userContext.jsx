@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect, useMemo, useContext } from 'react';
-import { addUser, getUsers, updateUser, deleteUser } from "../services/UserServices";
+import { userService } from "../services/UserServices";
 import { useNavigate } from "react-router";
 
 const UserContext = createContext()
@@ -16,22 +16,31 @@ export function UserProvider(props) {
         password: "",
     };
     const [Users, setUsers] = useState([]);
+    const [errors, setErrors] = useState([]);
     const [FormUser, setFormUser] = useState(initialCreateUsers);
     const [actionForm, setActionForm] = useState(true);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("carga datos de usuarios");
-        setLoading(true)
-
-        const response = getUsers();
+        // console.log("carga datos de usuarios");
+        const response = userService({ method: "GET" })
+        // const response = getUsers();
         response.then((data) => {
-            if (data.status !== 200) return console.log(data.response);
-
-            setUsers(data.response);
+            if (data.status !== 200) {
+                setErrors([data]);
+            } else {
+                setUsers(data.response);
+            }
+            showLoading(1000);
         });
     }, []);
+
+    const showLoading = (time) => {
+        setTimeout(() => {
+            setLoading(false)
+        }, time)
+    }
 
     // Obtiene la informacion del formulario y actualiza el estado con la misma
     const handleChange = (e) => {
@@ -49,44 +58,55 @@ export function UserProvider(props) {
     // Funcion que agrega y actualiza un usuario
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
 
         if (actionForm) {
             if (FormUser.username === "")
                 return alert("Debes completar todos los campos");
 
-            const response = addUser(FormUser);
+            const response = userService({ method: "POST", form: FormUser })
+            // const response = addUser(FormUser);
             response.then((data) => {
-                if (data.status !== 200) return console.log(data.response);
-
-                setUsers([...Users, data.response]);
-                console.log("MESSAGE: ADDED USER");
-                // alert("Usuario agregado con éxito");
-
-                onResetForm();
-                navigate("/users");
+                if (data.status !== 200 && data.status !== 201) {
+                    setErrors([data])
+                } else {
+                    console.log("MESSAGE: USER ADDED");
+                    setUsers([...Users, data.response]);
+                    onResetForm();
+                    navigate("/users");
+                    showLoading(1500)
+                }
             });
         } else if (!actionForm) {
-            const response = updateUser(FormUser);
+            const response = userService({ method: "PUT", form: FormUser })
+            // const response = updateUser(FormUser);
             response.then((data) => {
-                const updatedUser = data.response
+                if (data.status !== 200) {
+                    console.log("Error de servicio, contacte al Admin", data.response);
 
-                Users.map((user) => {
-                    if (user._id === updatedUser._id) {
-                        user.name = updatedUser.name;
-                        user.email = updatedUser.email;
-                        user.dob = updatedUser.dob;
-                        user.username = updatedUser.username;
-                        user.password = updatedUser.password;
+                    alert("Error de servicio, contacte al Admin", data.response)
+                } else {
+                    const updatedUser = data.response
 
-                        console.log("MESSAGE: UPDATED USER");
-                        // alert("Usuario agregado con éxito");
-                    }
-                });
+                    Users.map((user) => {
+                        if (user._id === updatedUser._id) {
+                            user.name = updatedUser.name;
+                            user.email = updatedUser.email;
+                            user.dob = updatedUser.dob;
+                            user.username = updatedUser.username;
+                            user.password = updatedUser.password;
 
-                setUsers(Users);
-                onResetForm();
-                setActionForm(true);
-                navigate("/users");
+                            console.log("MESSAGE: USER UPDATED");
+                            // alert("Usuario agregado con éxito");
+                        }
+                    });
+
+                    setUsers(Users);
+                    onResetForm();
+                    setActionForm(true);
+                    navigate("/users");
+                    showLoading(1500)
+                }
             });
         }
     };
@@ -98,12 +118,18 @@ export function UserProvider(props) {
     };
 
     const handleDeleteUser = (userId) => {
-        const response = deleteUser(userId);
+        const response = userService({ method: "DELETE", userId: userId })
+        // const response = deleteUser(userId);
         response.then((data) => {
-            if (data.message !== "User deleted") return console.log("MESSAGE: ERROR AL ELIMINAR EL USUARIO", data);
+            if (data.status !== 200) {
+                console.log("Error de servicio, contacte al Admin", data.response);
 
-            setUsers(Users.filter((User) => User._id !== userId));
-            console.log("MESSAGE: ", data.message.toUpperCase());
+                alert("Error de servicio, contacte al Admin", data.response)
+            } else {
+                console.log("MESSAGE: ", data.response.message.toUpperCase());
+                setUsers(Users.filter((User) => User._id !== userId));
+                showLoading(1500)
+            }
         });
     };
 
@@ -112,20 +138,20 @@ export function UserProvider(props) {
     // El value se actualiza cuando algún valor de las const que se le pasó en el array cambia
     const value = useMemo(() => {
         return ({
-            Users, FormUser, actionForm, handleAddUser, handleChange, handleSubmit, handleUpdateUser, handleDeleteUser
+            Users, errors, loading, FormUser, actionForm, handleAddUser, handleChange, handleSubmit, handleUpdateUser, handleDeleteUser
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [Users, FormUser, actionForm, loading])
+    }, [Users, FormUser, actionForm, loading, errors])
 
     // Se retorna el context con todas las funciones y propiedades
-    return <UserContext.Provider value={value} {...props} />
+    return <UserContext value={value} {...props} />
 }
 
 //! Este será el método a invocar en cada archivo para utilizar las diferentes funciones
 export function useUser() {
     const context = useContext(UserContext)
 
-    if (!context) throw new Error("Usuario no se encuentra dentro del contexto");
+    if (!context) throw new Error("Componente no se encuentra dentro del contexto");
 
     return context
 }
