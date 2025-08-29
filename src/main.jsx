@@ -6,23 +6,28 @@ import { AddTodo } from './components/Todo/AddTodo.jsx'
 import { CreateUser } from './components/User/CreateUser.jsx'
 import { UpdateUser } from './components/User/UpdateUser.jsx'
 import { UserProvider } from "./context/userContext.jsx";
+// import { SignIn } from './components/Auth/Login.jsx'
 import App from './App.jsx'
 import './index.css'
+import { AuthProvider } from './context/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     {/* <StrictMode> */}
     {/* Se envuelve la app en el Provider para tener acceso a los datos y funciones del Usuario */}
-    <UserProvider>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/users" element={<TableUser />} />
-          <Route path="/users/create" element={<CreateUser />} />
-          <Route path="/users/update" element={<UpdateUser />} />
-          <Route path="/todos" element={<AddTodo />} />
-        </Route>
-      </Routes>
-    </UserProvider>
+    <AuthProvider>
+      <UserProvider>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="/users" element={<TableUser />} />
+            <Route path="/users/create" element={<CreateUser />} />
+            <Route path="/users/update" element={<UpdateUser />} />
+            <Route path="/todos" element={<AddTodo />} />
+            {/* <Route path="/login" element={<SignIn />} /> */}
+          </Route>
+        </Routes>
+      </UserProvider>
+    </AuthProvider>
     {/* </StrictMode> */}
   </BrowserRouter>
 )

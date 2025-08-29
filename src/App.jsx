@@ -1,7 +1,8 @@
 import { Outlet } from "react-router";
-import { CustomNavBar } from './components/Base/CustomNavBar';
-import './App.css'
 import { CustomNav } from "./components/Base/CustomNav";
+import { SignIn } from './components/Auth/Login.jsx'
+import { useAuth } from "./context/AuthContext.jsx";
+import './App.css'
 
 const navItems = [
   {
@@ -23,16 +24,21 @@ const navItems = [
 ];
 
 export default function App() {
+  const { token, handleLogOut } = useAuth()
+
   return (
     <>
-      <header>
-        <CustomNav navItems={navItems} />
-      </header>
-
-      {/* Aqui se renderizan todas las ventanas */}
-      <main>
-        <Outlet />
-      </main>
+      {token.length >= 1 ?
+        <>
+          <header>
+            <CustomNav navItems={navItems} handleLogOut={handleLogOut} />
+          </header><main>
+            <Outlet />
+          </main>
+        </>
+        :
+        <SignIn />
+      }
     </>
   )
 }
