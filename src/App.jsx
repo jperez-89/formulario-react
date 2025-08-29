@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { CustomNav } from "./components/Base/CustomNav";
-import { SignIn } from './components/Auth/Login.jsx'
+import { SignIn } from './components/Auth/LogIn.jsx'
 import { useAuth } from "./context/AuthContext.jsx";
 import './App.css'
 
