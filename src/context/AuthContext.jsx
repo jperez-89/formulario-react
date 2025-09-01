@@ -18,13 +18,15 @@ export function AuthProvider(props) {
     const onResetForm = () => setFormLogin(frmLogin);
 
     useEffect(() => {
-        let tokenLocal = JSON.parse(localStorage.getItem("token"))
+        let tokenLocal = window.localStorage.getItem("token")
 
-        if (tokenLocal != null) setToken(tokenLocal)
+        if (tokenLocal) setToken(JSON.parse(tokenLocal))
 
-    }, [token]);
+        // Solo se ejecuta la primera  vez que se renderiza el componente
+    }, []);
 
     const handleChange = (e) => {
+        e.preventDefault()
         const { name, value } = e.target;
 
         setFormLogin({ ...FormLogin, [name]: value });

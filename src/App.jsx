@@ -32,7 +32,8 @@ export default function App() {
         <>
           <header>
             <CustomNav navItems={navItems} handleLogOut={handleLogOut} />
-          </header><main>
+          </header>
+          <main className="bg-amber-50">
             <Outlet />
           </main>
         </>
